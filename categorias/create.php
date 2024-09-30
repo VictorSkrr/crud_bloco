@@ -1,15 +1,14 @@
 <?php
 include '../includes/db.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['name'];
-    $usuario_id = $_SESSION['usuario_id']; // Sistema de login necessário
+    $nome = $_POST['nome'];
 
-    $stmt = $conn->prepare("INSERT INTO categorias (name, usuario_id) VALUES (?, ?)");
-    $stmt->execute([$name, $usuario_id]);
+    $stmt = $conn->prepare("INSERT INTO categorias (nome) VALUES (?)");
+    $stmt->execute([$nome]);
 
     header('Location: read.php');
+    exit();
 }
 ?>
 
@@ -19,4 +18,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <button type="submit">Criar Categoria</button>
 </form>
+
 <a href="read.php">Ver Categorias</a>

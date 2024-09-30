@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
-    // Aqui deve ser implementado o login e redirecionamento para login.php
 }
 ?>
 
