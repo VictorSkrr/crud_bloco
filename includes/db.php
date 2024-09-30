@@ -1,10 +1,9 @@
 <?php
 // Arquivo: includes/db.php
-
 $host = 'localhost';
 $dbname = 'sistema_bloco_de_notas';
-$username = 'root'; // Substituir se necessário
-$password = 'root'; // Substituir se necessário
+$username = 'root'; // Altere conforme necessário
+$password = 'root'; // Altere conforme necessário
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

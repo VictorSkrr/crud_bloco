@@ -1,11 +1,8 @@
 <?php
 include '../includes/db.php';
-session_start();
 
-$usuario_id = $_SESSION['usuario_id']; // Você precisa implementar o sistema de login
-
-$stmt = $conn->prepare("SELECT * FROM notas WHERE usuario_id = ?");
-$stmt->execute([$usuario_id]);
+$stmt = $conn->prepare("SELECT * FROM notas");
+$stmt->execute();
 $notas = $stmt->fetchAll();
 ?>
 
@@ -14,7 +11,9 @@ $notas = $stmt->fetchAll();
 <ul>
     <?php foreach ($notas as $nota): ?>
         <li>
-            <strong><?php echo $nota['titulo']; ?></strong> - <?php echo $nota['conteudo']; ?>
+            <strong><?php echo htmlspecialchars($nota['titulo']); ?></strong> - 
+            <?php echo htmlspecialchars($nota['conteudo']); ?> 
+            (<?php echo $nota['data_criacao']; ?>)
             <a href="update.php?id=<?php echo $nota['id']; ?>">Editar</a>
             <a href="delete.php?id=<?php echo $nota['id']; ?>">Excluir</a>
         </li>
