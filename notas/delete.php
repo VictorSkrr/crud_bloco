@@ -1,12 +1,11 @@
 <?php
-session_start();
 include '../includes/db.php';
+session_start();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-
-    $query = $conn->prepare("DELETE FROM notas WHERE id = ?");
-    $query->execute([$id]);
+    $stmt = $conn->prepare("DELETE FROM notas WHERE id = ?");
+    $stmt->execute([$id]);
 
     header('Location: read.php');
 }
